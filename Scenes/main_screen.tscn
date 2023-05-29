@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnvit33mgebv7"]
+
+[ext_resource type="Script" path="res://Scripts/Menus.gd" id="1_wabak"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Title" type="Node2D" parent="."]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+custom_minimum_size = Vector2(576, 1024)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menus" type="Node2D" parent="."]
+script = ExtResource("1_wabak")
+
+[node name="Play" type="Button" parent="Menus"]
+offset_left = 2.0
+offset_top = 444.0
+offset_right = 202.0
+offset_bottom = 524.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Play"
+
+[node name="Options" type="Button" parent="Menus"]
+offset_left = 2.0
+offset_top = 624.0
+offset_right = 202.0
+offset_bottom = 704.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Options"
+
+[node name="Quit" type="Button" parent="Menus"]
+offset_left = 2.0
+offset_top = 832.0
+offset_right = 202.0
+offset_bottom = 912.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Quit"
+
+[connection signal="pressed" from="Menus/Play" to="Menus" method="_on_play_pressed"]
+[connection signal="pressed" from="Menus/Quit" to="Menus" method="_on_quit_pressed"]

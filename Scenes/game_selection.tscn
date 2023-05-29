@@ -1,0 +1,147 @@
+[gd_scene load_steps=4 format=3 uid="uid://dda12ibf4vnqe"]
+
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_1nmnm"]
+[ext_resource type="Script" path="res://Scripts/game_selection.gd" id="1_mpk5m"]
+[ext_resource type="Script" path="res://Scripts/ludo_mode.gd" id="3_u7j2k"]
+
+[node name="GameSelection" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+custom_minimum_size = Vector2(576, 1024)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu" type="Node2D" parent="."]
+script = ExtResource("1_1nmnm")
+
+[node name="game_selection" type="Node2D" parent="Menu"]
+script = ExtResource("1_mpk5m")
+
+[node name="Ludo" type="Button" parent="Menu/game_selection"]
+offset_top = 238.0
+offset_right = 579.0
+offset_bottom = 557.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Ludo"
+flat = true
+
+[node name="Snake&Ladder" type="Button" parent="Menu/game_selection"]
+offset_left = -2.0
+offset_top = 644.0
+offset_right = 577.0
+offset_bottom = 963.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Snake&Ladder
+"
+flat = true
+
+[node name="Back" type="Button" parent="Menu/game_selection"]
+offset_left = 2.0
+offset_top = -16.0
+offset_right = 581.0
+offset_bottom = 197.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Back"
+flat = true
+
+[node name="ludo_mode" type="Node2D" parent="Menu"]
+position = Vector2(576, 0)
+script = ExtResource("3_u7j2k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/ludo_mode"]
+custom_minimum_size = Vector2(576, 1024)
+offset_right = 192.0
+offset_bottom = 193.0
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.56
+theme_override_constants/separation = 250
+
+[node name="Back" type="Button" parent="Menu/ludo_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Back
+"
+flat = true
+
+[node name="Ludo_online" type="Button" parent="Menu/ludo_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Ludo Online
+"
+flat = true
+
+[node name="Ludo_local" type="Button" parent="Menu/ludo_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Ludo Local"
+flat = true
+
+[node name="Ludo_AI" type="Button" parent="Menu/ludo_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "Ludo AI"
+flat = true
+
+[node name="s&d_mode" type="Node2D" parent="Menu"]
+position = Vector2(-576, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/s&d_mode"]
+custom_minimum_size = Vector2(576, 1024)
+offset_right = 192.0
+offset_bottom = 193.0
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.56
+theme_override_constants/separation = 250
+
+[node name="Back1" type="Button" parent="Menu/s&d_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Back
+"
+flat = true
+
+[node name="s&d_online" type="Button" parent="Menu/s&d_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "S&D Online
+"
+flat = true
+
+[node name="s&d_local" type="Button" parent="Menu/s&d_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "S&D Local"
+flat = true
+
+[node name="s&d_AI" type="Button" parent="Menu/s&d_mode/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+text = "S&D AI"
+flat = true
+
+[connection signal="pressed" from="Menu/game_selection/Ludo" to="Menu" method="_on_ludo_pressed"]
+[connection signal="pressed" from="Menu/game_selection/Snake&Ladder" to="Menu" method="_on_snake_ladder_pressed"]
+[connection signal="pressed" from="Menu/game_selection/Back" to="Menu/game_selection" method="_on_back_pressed"]
+[connection signal="pressed" from="Menu/ludo_mode/VBoxContainer/Back" to="Menu" method="_on_back_pressed"]
+[connection signal="pressed" from="Menu/ludo_mode/VBoxContainer/Ludo_AI" to="Menu" method="_on_ludo_ai_pressed"]
+[connection signal="pressed" from="Menu/s&d_mode/VBoxContainer/Back1" to="Menu" method="_on_back_1_pressed"]

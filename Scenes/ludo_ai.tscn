@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=3 uid="uid://dl5pstn7xjckw"]
+
+[ext_resource type="Script" path="res://Scripts/Area2D.gd" id="1_fpnp8"]
+[ext_resource type="Script" path="res://Scripts/Dice.gd" id="1_i4336"]
+[ext_resource type="Texture2D" uid="uid://bisw3x6gat5tl" path="res://icon.svg" id="2_qbls8"]
+[ext_resource type="Texture2D" uid="uid://dif8udqqb7u1h" path="res://Assets/DicePack/1.png" id="2_qjtfx"]
+[ext_resource type="Texture2D" uid="uid://bxqjtcbt1oivx" path="res://Assets/DicePack/2.png" id="3_4hl3i"]
+[ext_resource type="Texture2D" uid="uid://ctcsxjlbt21dl" path="res://Assets/DicePack/3.png" id="4_naned"]
+[ext_resource type="Texture2D" uid="uid://53wqfpv4oath" path="res://Assets/DicePack/4.png" id="5_rar1a"]
+[ext_resource type="Texture2D" uid="uid://bapct6qhpm4lp" path="res://Assets/DicePack/5.png" id="6_5drrq"]
+[ext_resource type="Texture2D" uid="uid://ccoaskj4xoocy" path="res://Assets/DicePack/6.png" id="7_rviws"]
+[ext_resource type="Script" path="res://Scripts/Board.gd" id="10_bbs7k"]
+[ext_resource type="Texture2D" uid="uid://cjh2jcov2u847" path="res://Assets/ludo_map.png" id="10_xasdn"]
+[ext_resource type="Script" path="res://Scripts/AI3.gd" id="11_1xwkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0pbr"]
+size = Vector2(128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irwvr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qjtfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4hl3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_naned")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rar1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5drrq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rviws")
+}],
+"loop": true,
+"name": &"dice_roll",
+"speed": 16.0
+}]
+
+[node name="Ludo_AI" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+custom_minimum_size = Vector2(576, 1024)
+offset_top = 4.0
+offset_right = 576.0
+offset_bottom = 1028.0
+
+[node name="game" type="Node2D" parent="."]
+
+[node name="Pieces" type="Node2D" parent="game"]
+
+[node name="Area2D" type="Area2D" parent="game/Pieces"]
+position = Vector2(-596, 680)
+script = ExtResource("1_fpnp8")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="game/Pieces/Area2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_qbls8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="game/Pieces/Area2D"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_l0pbr")
+
+[node name="RayCast2D" type="RayCast2D" parent="game/Pieces/Area2D"]
+
+[node name="Scores" type="Node2D" parent="game"]
+
+[node name="Board" type="Node2D" parent="game"]
+script = ExtResource("10_bbs7k")
+
+[node name="Players" type="Node2D" parent="game/Board"]
+
+[node name="Human" type="Node2D" parent="game/Board/Players"]
+
+[node name="AI3" type="Node2D" parent="game/Board/Players"]
+script = ExtResource("11_1xwkc")
+
+[node name="LudoMap" type="Sprite2D" parent="game/Board"]
+position = Vector2(290, 564)
+scale = Vector2(2.40833, 2.40833)
+texture = ExtResource("10_xasdn")
+
+[node name="Dice" type="Node2D" parent="game"]
+script = ExtResource("1_i4336")
+
+[node name="play" type="Button" parent="game/Dice"]
+offset_left = 5.0
+offset_top = 735.0
+offset_right = 113.0
+offset_bottom = 843.0
+flat = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="game/Dice"]
+position = Vector2(64, 789)
+sprite_frames = SubResource("SpriteFrames_irwvr")
+animation = &"dice_roll"
+frame = 2
+
+[connection signal="pressed" from="game/Dice/play" to="game/Dice" method="_on_play_pressed"]
+[connection signal="toggled" from="game/Dice/play" to="game/Dice" method="_on_play_toggled"]
